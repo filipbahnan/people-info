@@ -1,10 +1,7 @@
 package com.filip.peopleinfo.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +16,10 @@ public class UserController {
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<User> getAllUsers(){
         return userService.getAllUsers();
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public List<User> getSpecificUsers(@RequestParam String input){
+        return userService.searchUsers(input);
     }
 }

@@ -11,8 +11,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> getAllUsers()
-    {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    public List<User> searchUsers(String search) {
+        return userRepository.selectSpeficUser(search);
     }
 }

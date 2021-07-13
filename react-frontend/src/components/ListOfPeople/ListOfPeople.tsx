@@ -1,24 +1,17 @@
 import React from 'react'
+import styles from './ListOfPeople.module.css'
 
-// const rows = [
-//     {type: "Frozen yoghurt", id: 159},
-//     {type: "Ice cream sandwich", id: 237},
-//     {type: "Eclair", id: 262},
-//     {type: "Cupcake", id: 305},
-//     {type: "Gingerbread", id: 356}
-// ];
-
-const ListOfPeople = (props: any): JSX.Element => {
-    console.log(props);
+const ListOfPeople = (props: { users: never[]; }): JSX.Element => {
+    console.log(typeof(props));
     let table: JSX.Element[] = props.users.map((row: any) => (
         <tr key={row.id}>
-            <td>{row.name}</td>
-            <td>{row.email}</td>
-            <td>{row.id}</td>
+            <td className={styles.td}>{row.name}</td>
+            <td className={styles.td}>{row.email}</td>
+            <td className={styles.td}>{row.id}</td>
         </tr>
     ));
 
-    return <div><table>{table}</table></div>;
+    return <div><table className={styles.table}>{table}</table></div>;
 };
 
 export default ListOfPeople;

@@ -1,6 +1,9 @@
 import React from 'react';
 import NavBar from './components/NavBar/NavBar';
 import AllPeople from './components/AllPeople/AllPeople'
+import SearchPeople from './components/SearchPeople/SearchPeople'
+import styles from './App.module.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 /* Write components like this:
 import React from 'react'
@@ -18,9 +21,23 @@ export default NavBar;
 
 function App() {
   return (
-    <div className="App">
-      <NavBar />
-      <AllPeople />
+    <div>
+      <div className={styles.center}>
+        <Router>
+          <NavBar />
+            <Switch>
+              <Route exact path="/home">
+                <SearchPeople />
+              </Route>
+              <Route exact path="/">
+                <SearchPeople />
+              </Route>
+              <Route exact path="/all">
+                <AllPeople/>
+              </Route>
+            </Switch>
+        </Router>
+      </div>
     </div>
   );
 }

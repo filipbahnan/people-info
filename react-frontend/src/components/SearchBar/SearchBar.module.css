@@ -1,0 +1,30 @@
+.search {
+    margin: auto;
+    width: 50%;
+    padding: 50px;
+}
+
+.input {
+  width: 50%;
+  color: greenyellow;
+  background-color: #252525;
+  font-size: large;
+  padding: 16px 16px;
+  margin: 8px 0px;
+  border: solid rgb(61, 61, 61);
+  border-radius: 10px;
+  box-sizing: border-box;
+  outline: none
+}
+
+.button {
+  background-color: #252525;
+  border: solid rgb(61, 61, 61);
+  border-radius: 10px;
+  color: greenyellow;
+  padding: 16px 16px;
+  text-align: center;
+  margin: 8px 8px;
+  cursor: pointer;
+  outline: none
+}

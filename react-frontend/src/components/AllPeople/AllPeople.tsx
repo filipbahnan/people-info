@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 
-import ListOfPeople from './../ListOfPeople/ListOfPeople' 
+import styles from './AllPeople.module.css';
+import ListOfPeople from '../ListOfPeople/ListOfPeople' 
+import { fetchAllUsers } from '../../Api.module'
 
 const AllPeople = (): JSX.Element => {
 
     const [data, setData] = useState([]);
 
     useEffect( () => {
-        const fetchUsers = async () => {
-            const response = await axios(`http://192.168.1.220:8080/api/v1/users/all`);
-            setData(response.data);
-            console.log(response.data)
+        const fetchUsers = async () : Promise<void> => {
+            const response = await fetchAllUsers();
+            setData(response);
         };
         fetchUsers();
     }, []);
 
     return (
-        <div>
-            <h1>TESTING</h1>
+        <div className={styles.component}>
+            <h1>All registered users</h1>
             <tbody><ListOfPeople users={data}/></tbody>
         </div>
     );
