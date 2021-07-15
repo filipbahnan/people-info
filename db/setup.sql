@@ -10,9 +10,16 @@ CREATE TABLE hello (
 );
 
 CREATE TABLE users (
-    id SERIAL,
+    id INT primary key GENERATED ALWAYS AS IDENTITY,
     name VARCHAR(20) NOT NULL,
     email VARCHAR(40) NOT NULL
+);
+
+CREATE TABLE user_posts(
+    id INT primary key GENERATED ALWAYS AS IDENTITY,
+    title VARCHAR(40) NOT NULL,
+    text TEXT NOT NULL,
+    user_id INT REFERENCES users (id)
 );
 
 DROP USER IF EXISTS usr;

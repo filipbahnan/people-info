@@ -1,8 +1,10 @@
 package com.filip.peopleinfo.user;
 
+import com.filip.peopleinfo.userPost.UserPost;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Entity
@@ -10,15 +12,18 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id", nullable=false, unique=true)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable=false)
     private String name;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable=false)
     private String email;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<UserPost> posts;
 
     public User() {
     }
