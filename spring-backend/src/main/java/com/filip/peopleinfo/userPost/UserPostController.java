@@ -1,6 +1,8 @@
 package com.filip.peopleinfo.userPost;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,13 +15,8 @@ public class UserPostController {
     @Autowired
     private UserPostService userPostService;
 
-    @RequestMapping(value = "/posts", method = RequestMethod.GET)
-    public List<UserPostProjections> getAllUserPosts() {
-        return userPostService.selectAllPosts();
-    }
-
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public List<UserPostProjections> getUserPosts(@RequestParam String user) {
-        return userPostService.getPostsFromUser(user);
+    public ResponseEntity<List<UserPostProjections>> getUserPosts(@RequestParam String user) {
+        return ResponseEntity.status(HttpStatus.OK).body(userPostService.getPostsFromUser(user));
     }
 }

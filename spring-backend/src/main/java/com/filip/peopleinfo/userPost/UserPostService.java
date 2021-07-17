@@ -13,10 +13,6 @@ public class UserPostService {
     @Autowired
     private UserPostRepository UserPostRepository;
 
-    public List<UserPostProjections> selectAllPosts() {
-        return UserPostRepository.findAllUserPost();
-    }
-
     public List<UserPostProjections> getPostsFromUser(String user) {
         return UserPostRepository.selectPostsWhereUser(user);
     }
