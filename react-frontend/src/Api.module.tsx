@@ -20,3 +20,10 @@ export const fetchSpecifiedUsers = async (search: string) : Promise<never[]> => 
     });
 };
 
+export const fetchPosts = async (user: string) : Promise<never[]> => {
+    return await axios.get(endpoint + '/userposts/user?user=' + user).then(response => {
+        return response.data;
+    }).catch(err => {
+        throw err
+    });
+};

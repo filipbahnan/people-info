@@ -1,17 +1,26 @@
-import React from 'react'
-import styles from './UserPost.module.css'
+import React, { useEffect, useState } from 'react'
+import { fetchPosts } from '../../Api.module'
 
-const UserProfile = (props: { users: never[]; }): JSX.Element => {
-    console.log(typeof(props));
-    let table: JSX.Element[] = props.users.map((row: any) => (
+const UserProfile = (props: {user: string}): JSX.Element => {
+
+    const [data, setData] = React.useState([]);
+
+    useEffect(() => {
+        async function fetchMyAPI() {
+          let result: never[] = await fetchPosts(props.user);
+          setData(result);
+        }
+        fetchMyAPI()
+      }, [])
+
+    let table: JSX.Element[] = data.map((row: any) => (
         <tr key={row.id}>
-            <td className={styles.td}>{row.name}</td>
-            <td className={styles.td}>{row.email}</td>
-            <td className={styles.td}>{row.id}</td>
+            <td>{row.title}</td>
+            <td>{row.text}</td>
         </tr>
     ));
 
-    return <div><table className={styles.table}>{table}</table></div>;
+   return <div>{table}</div>
 };
 
 export default UserProfile;
